@@ -1,0 +1,87 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo del modal */
+
+
+/* Botón para cerrar el modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Estilos generales para el contenedor del date picker */
+.date-picker {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+/* Estilos para la etiqueta */
+.date-picker label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Estilos para el input de fecha */
+.date-picker input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Estilos para el input de fecha cuando está enfocado */
+.date-picker input[type="date"]:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Estilos para el input de fecha en navegadores WebKit (Chrome, Safari) */
+.date-picker input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: #66afe9;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Estilos para el input de fecha en navegadores Firefox */
+.date-picker input[type="date"]::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/* Estilos para el input de fecha en navegadores Edge */
+.date-picker input[type="date"]::-ms-clear {
+    display: none;
+}
+

@@ -1,0 +1,32 @@
+{
+  "name": "webbitcoint",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/index.js"
+  },
+  "author": "ruben/richard",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9"
+  },
+  "description": "Ambiente local ruben",
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ricado80/API-PORTAL.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ricado80/API-PORTAL/issues"
+  },
+  "homepage": "https://github.com/Ricado80/API-PORTAL#readme"
+}
