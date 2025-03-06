@@ -1,7 +1,7 @@
 const mysql = require('mysql2/promise');
 const config = require('../config');
 
-let conexion;
+let conexion; 
 
 async function conexiondb() {
     let conexion;  // Definimos la variable de conexión fuera del try-catch
