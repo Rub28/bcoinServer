@@ -19,7 +19,7 @@ async function conexiondb() {
         // Obtener una conexión del pool
         conexion = await pool.getConnection();
 
-        console.log("DB conectada");
+        console.log(" DB conectada, ok ");
         return conexion;
 
     } catch (err) {
