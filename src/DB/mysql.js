@@ -23,7 +23,7 @@ async function conexiondb() {
         return conexion;
 
     } catch (err) {
-        console.error('Error al conectar a la base de datos:', err);
+        console.error('Error al conectar a la base de datos --> ', err);
     } finally {
         // Asegurarse de liberar la conexión si se ha establecido
         if (conexion) {
