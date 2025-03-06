@@ -10,7 +10,7 @@ async function conexiondb() {
         const pool = mysql.createPool({
             host: config.mysql.host,
             user: config.mysql.user,
-            password: config.mysql.password,
+            password: config.mysql.password, 
          //   port: 3306, 
             port: config.mysql.port, 
             database: config.mysql.database,
