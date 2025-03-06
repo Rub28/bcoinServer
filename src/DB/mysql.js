@@ -5,7 +5,8 @@ const dbconfig = {
     host: config.mysql.host,
     user: config.mysql.user,
     pw: config.mysql.password,
-    database: config.mysql.database
+    database: config.mysql.database,
+    port: config.mysql.port
 }
 
 let conexion;
