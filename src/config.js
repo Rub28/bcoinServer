@@ -14,4 +14,5 @@ module.exports = {
         database: process.env.MYSQL_DB || 'u785010228_bcoin_bd', 
         port: process.env.PORT_BD || 3306  
     }
-}
+}   
+  
