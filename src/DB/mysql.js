@@ -16,6 +16,7 @@ async function conexiondb() {
             database: config.mysql.database,
             namedPlaceholders: true
         });
+        console.log(" host: ", config.mysql.host); 
         // Obtener una conexión del pool
         conexion = await pool.getConnection();
 
