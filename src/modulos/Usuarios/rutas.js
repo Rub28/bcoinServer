@@ -8,8 +8,8 @@ const router = express.Router();
 router.post('/validaUsuario',seguridad(),validaUsuario);
 router.get('/', seguridad(),todos);
 router.get('/:id', uno);
-router.post('/', agregar);
-//router.post('/', seguridad(), agregar);
+//router.post('/', agregar);
+router.post('/', seguridad(), agregar);
 router.put('/',seguridad(), baja);
 
 async function todos(req,res, next){
