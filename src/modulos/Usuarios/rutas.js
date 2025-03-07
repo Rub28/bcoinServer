@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/validaUsuario',seguridad(),validaUsuario);
 router.get('/', seguridad(),todos);
 router.get('/:id', uno);
-//router.post('/', agregar);
+//router.post('/', agregar);  //  solo para los usuarios iniciales.  
 router.post('/', seguridad(), agregar);
 router.put('/',seguridad(), baja);
 

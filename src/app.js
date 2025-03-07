@@ -29,6 +29,11 @@ app.use('/api/usuarios/validaUsuario', usuarios)
 app.use('/api/movimientos', movimientos)
 app.use('/api/movimientos/todosMovimientos', movimientos)
 app.use('/api/auth', auth)
+
+app.use(cors({
+    origin: 'https://criptorapidoseguro.com/',
+}));
+
 app.use(error);
 
 module.exports =app;
