@@ -2,7 +2,7 @@
 require('dotenv')
 module.exports = {
     app: {
-        port: process.env.PORT || 4001
+        port: process.env.PORT || 4000
     },
     jwt:{
         secret: process.env.JET_SECRET || 'miconstraseña2848330'
