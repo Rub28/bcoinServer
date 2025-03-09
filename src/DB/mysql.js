@@ -12,7 +12,7 @@ async function conexiondb() {
             user: config.mysql.user,
             password: config.mysql.password, 
          //   port: 3306, 
-            port: config.mysql.port, 
+            port: config.mysql.port,    
             database: config.mysql.database,
             namedPlaceholders: true
         });
