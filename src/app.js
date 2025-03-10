@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const config = require('./config');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 
 const clientes = require('./modulos/clientes/rutas');
 const usuarios = require('./modulos/Usuarios/rutas');
