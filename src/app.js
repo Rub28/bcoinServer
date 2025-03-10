@@ -47,8 +47,8 @@ const options = {
   https.createServer(options, (req, res) => {
     res.writeHead(200);
     res.end('¡Hola, mundo seguro!');
-  }).listen(443, () => {
-    console.log('Servidor HTTPS escuchando en el puerto 443');
+  }).listen(4002, () => {
+    console.log('Servidor HTTPS escuchando en el puerto 4002');
   });
 
 
