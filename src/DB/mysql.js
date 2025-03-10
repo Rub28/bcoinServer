@@ -311,12 +311,15 @@ async function Movimientos(tabla, data) {
         // Acción para el rol "ADMIN"
         if (data.roluser === "ADMIN") {
             const [result] = await conexion.execute(
-                ` SELECT M.id, c.id as Id_cliente, M.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(u.firt_name,' ',u.second_name) NombreAgente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id
-	INNER JOIN users AS U
-		ON  M.id_agente = u.id
-        WHERE M.estatus = ? `,
+                ` SELECT m.id, C.id as Id_cliente, 
+                    m.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida,
+                    m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(U.firt_name,' ',U.second_name) NombreAgente
+                    FROM  movimientos AS m
+                        INNER JOIN  clientes AS C
+                            ON  m.id_cliente = C.id
+                        INNER JOIN users AS U
+                            ON  m.id_agente = U.id
+                            WHERE m.estatus = ? `,
                 [data.estatus]  // Asumimos que un ADMIN puede consultar todos los agentes con el estatus dado
             );
             return result;
