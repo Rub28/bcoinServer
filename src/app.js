@@ -23,9 +23,8 @@ app.use(express.urlencoded({ extended: true }))
 app.set('port', config.app.port);
 
 // rutas
-app.use(cors({
-    origin: 'https://criptorapidoseguro.com/',
-}));
+app.use(cors());  
+
 app.use('/api/clientes', clientes)
 app.use('/api/clientes/autocomplete', clientes)
 app.use('/api/clientes/todosagente', clientes)
