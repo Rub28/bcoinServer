@@ -37,20 +37,15 @@ app.use('/api/auth', auth)
 app.use(error);
 
 
-// Carga los certificados
+// Cargar los certificados de Let's Encrypt
 const options = {
     key: fs.readFileSync(path.join('/etc/letsencrypt/live/srv743626.hstgr.cloud/privkey.pem')),
     cert: fs.readFileSync(path.join('/etc/letsencrypt/live/srv743626.hstgr.cloud/fullchain.pem')),
   };
   
-  // Crea el servidor HTTPS
-  https.createServer(options, (req, res) => {
-    res.writeHead(200);
-    res.end('¡Hola, mundo seguro!');
-  }).listen(4005, () => {
+  // Crear el servidor HTTPS
+  https.createServer(options, app).listen(4005, () => {
     console.log('Servidor HTTPS escuchando en el puerto 4005');
   });
 
-
 module.exports =app;
-
