@@ -297,13 +297,15 @@ async function Movimientos(tabla, data) {
         // Acción para el rol "AGENTE"
         if (data.roluser === "AGENTE") {
             const [result] = await conexion.execute(
-                ` SELECT M.id, c.id as Id_cliente, M.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(u.firt_name,' ',u.second_name) NombreAgente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id
-	INNER JOIN users AS U
-		ON  M.id_agente = u.id
-        WHERE M.estatus = ? AND C.id_agente = ?`, 
-                [data.estatus, data.id_agente]
+                ` SELECT m.id, C.id as Id_cliente, m.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final,
+                  m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(u.firt_name,' ',u.second_name) NombreAgente 
+                    FROM  movimientos AS m
+                    INNER JOIN  clientes AS C
+                            ON  m.id_cliente = C.id 
+                    INNER JOIN users AS u 
+                            ON  m.id_agente = u.id  
+                        WHERE m.estatus = ? AND C.id_agente =  ?`, 
+                        [data.estatus, data.id_agente]
             );
             return result;
         }
@@ -328,11 +330,13 @@ async function Movimientos(tabla, data) {
         // Acción para el rol "CLIENTE"
         if (data.roluser === "CLIENTE") {
             const [result] = await conexion.execute(
-                ` SELECT M.id, c.id as Id_cliente, M.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id 
-        WHERE M.estatus = 'A' AND C.id `,
-                [data.estatus, data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos
+                ` SELECT m.id, c.id as Id_cliente, m.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida,
+                    m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, c.id_agente
+                    FROM  movimientos AS m
+                        INNER JOIN  clientes AS c
+                                ON  m.id_cliente = c.id 
+                             WHERE  m.estatus = 'A' AND c.id `,
+                            [data.estatus, data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos
             );
             return result;
         }
