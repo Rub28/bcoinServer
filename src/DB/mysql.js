@@ -341,7 +341,7 @@ async function Movimientos(tabla, data) {
                              WHERE  c.id = ? `,
                             [data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos 
 
-            );
+            );   
             return result;
         } 
      
