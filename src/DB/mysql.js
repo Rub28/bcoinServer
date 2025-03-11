@@ -294,6 +294,8 @@ async function Movimientos(tabla, data) {
         // Obtener la conexión desde el pool
         conexion = await conexiondb();
 
+        console.log(" Movimientos  Tipo usuario : ", data.roluser);  
+
         // Acción para el rol "AGENTE"
         if (data.roluser === "AGENTE") {
             const [result] = await conexion.execute(
@@ -305,7 +307,7 @@ async function Movimientos(tabla, data) {
                     INNER JOIN users AS u 
                             ON  m.id_agente = u.id  
                         WHERE m.estatus = ? AND C.id_agente =  ?`, 
-                        [data.estatus, data.id_agente]
+                        [data.id_agente]
             );
             return result;
         }
@@ -328,15 +330,17 @@ async function Movimientos(tabla, data) {
         }
 
         // Acción para el rol "CLIENTE"
-        if (data.roluser === "CLIENTE") {
+        if (data.roluser === "CLIENTE") { 
+            console.log(" CLiente: ", data.id_cliente)
             const [result] = await conexion.execute(
                 ` SELECT m.id, c.id as Id_cliente, m.num_hit, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida,
                     m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, c.id_agente
                     FROM  movimientos AS m
                         INNER JOIN  clientes AS c
                                 ON  m.id_cliente = c.id 
-                             WHERE  m.estatus = ? AND c.id = ? `,
-                            [data.estatus, data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos
+                             WHERE  c.id = ? `,
+                            [data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos 
+
             );
             return result;
         } 
