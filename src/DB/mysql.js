@@ -339,8 +339,8 @@ async function Movimientos(tabla, data) {
                             [data.estatus, data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos
             );
             return result;
-        }
-
+        } 
+     
         // Si el rol no es válido
         throw new Error("Rol no reconocido para realizar la consulta.");
 
