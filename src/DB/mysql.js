@@ -335,7 +335,7 @@ async function Movimientos(tabla, data) {
                     FROM  movimientos AS m
                         INNER JOIN  clientes AS c
                                 ON  m.id_cliente = c.id 
-                             WHERE  m.estatus = 'A' AND c.id `,
+                             WHERE  m.estatus = ? AND c.id = ? `,
                             [data.estatus, data.id_cliente]  // Los clientes solo pueden ver sus propios movimientos
             );
             return result;
