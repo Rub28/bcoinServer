@@ -52,7 +52,7 @@ function todos(tabla) {
     })
 }*/
 
-async function todos(tabla) {
+async function todos(tabla, data) {
     let conexion;
     try {
         // Obtener la conexión desde el pool
@@ -61,7 +61,7 @@ async function todos(tabla) {
         // Realizar la consulta usando async/await y execute
         const [result] = await conexion.execute(
             `SELECT * FROM ${tabla} WHERE estatus = ?`,
-            ['A']  // Parámetro 'A' para el estatus activo
+            [data.estatus]  // Parámetro 'A' para el estatus activo
         );
 
         // Retornar los resultados de la consulta
