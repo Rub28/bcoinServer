@@ -137,6 +137,8 @@ function actualizar(tabla, data) {
 
 async function actualizar(tabla, data) {
     let conexion;
+    console.log(' actualizar --> data: ', data);  
+    
     try {
         // Obtener la conexión desde el pool
         conexion = await conexiondb();
