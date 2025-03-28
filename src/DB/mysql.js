@@ -143,9 +143,9 @@ async function actualizar(tabla, data) {
 
         // Ejecutar la consulta de actualización usando placeholders con nombre
         const [result] = await conexion.execute(
-            `UPDATE ${tabla} SET ${Object.keys(data).map(key => `${key} = :${key}`).join(', ')} WHERE id = :id`, 
-            data  // Pasar el objeto directamente
-        );
+            `UPDATE ${tabla} SET ${Object.keys(data).map(key => `${key} = :${key}`).join(', ')} WHERE id = ? `, 
+        [data.id]  // Pasar el objeto directamente  
+        ); 
 
         // Retornar el resultado de la actualización
         return result;
