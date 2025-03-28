@@ -138,7 +138,7 @@ function actualizar(tabla, data) {
 async function actualizar(tabla, data) {
     let conexion;
     console.log(' actualizar --> data: ', data);  
-    
+
     try {
         // Obtener la conexión desde el pool
         conexion = await conexiondb();
@@ -189,10 +189,10 @@ async function baja(tabla, consulta) {
         conexion = await conexiondb();
 
         // Asegurarse de que consulta es un objeto con propiedades como 'user_name' y 'user_password'
-        console.log("consulta", consulta)
-
+        console.log(" baja --> ", consulta); 
+          
         const parametros = [consulta.estatus, consulta.id];
-        console.log("parametros", parametros)
+        console.log(" parametros ", parametros)
         // Ejecutar la consulta usando los parámetros en un array
         const [result] = await conexion.execute(
             `UPDATE ${tabla} SET estatus = ? where id = ?`,
