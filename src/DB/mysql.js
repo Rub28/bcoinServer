@@ -309,7 +309,7 @@ async function Movimientos(tabla, data) {
                     INNER JOIN users AS u 
                             ON  m.id_agente = u.id  
                         WHERE m.estatus = ? AND C.id_agente =  ?`, 
-                        [data.id_agente]
+                        [data.estatus, data.id_agente]
             );
             return result;
         }
@@ -545,7 +545,7 @@ async function UsuariosAgente(tabla, consulta) {
                 `select u.*,  c.nom_cliente from users AS u
                 INNER JOIN  clientes as c
                 on  u.id_cliente = c.id
-                where c.id_agente = ? and U.ESTATUS = ?`,
+                where c.id_agente = ? and u.ESTATUS = ?`,
                 parametros // Pasar los parámetros como un array
             );
 
