@@ -634,7 +634,7 @@ async function login(tabla, consulta) {
         console.log("parametros", parametros)
         // Ejecutar la consulta usando los parámetros en un array
         const [result] = await conexion.execute(
-            `SELECT id, user_password, user_name, rol_user, id_cliente 
+            `SELECT id, user_password, user_name, rol_user, id_cliente, estatus  
             FROM ${tabla} 
             WHERE user_name = ?`,
             parametros // Pasar los parámetros como un array
@@ -684,14 +684,14 @@ async function hitMaximo (tabla, consulta) {
         return result[0] || null; // Si no hay coincidencias, se devuelve null
 
     } catch (error) {
-        console.error("Error en el login:", error);
+        console.error("Error en el hitMaximo: ", error);
         throw error; // Lanzamos el error para que lo maneje el bloque llamante
 
     } finally {
         // Liberar la conexión si se obtuvo
         if (conexion) {
             conexion.release();
-            console.log("Conexión liberada tras login");
+            console.log("Conexión liberada tras hitMaximo ");
         }
     }; 
 
