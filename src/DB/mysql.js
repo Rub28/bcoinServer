@@ -666,7 +666,7 @@ async function rendimiento (tabla, consulta) {
         conexion = await conexiondb();
 
         // Asegurarse de que consulta es un objeto con propiedades como 'user_name' y 'user_password'
-        console.log(" baja --> ", consulta); 
+        console.log(" rendimiento  --> ", consulta); 
           
         const parametros = [consulta.precio_final, consulta.id_cliente];
         console.log(" parametros ", parametros)
