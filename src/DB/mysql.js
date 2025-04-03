@@ -251,45 +251,6 @@ async function query(tabla, consulta) {
     }
 }
 
-
-/*
-function Movimientos(tabla, data) {
-    if (data.roluser === "AGENTE") {
-        return new Promise((resolve, reject) => {
-            conexion.query(` SELECT M.id, c.id as Id_cliente, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(u.firt_name,' ',u.second_name) NombreAgente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id
-	INNER JOIN users AS U
-		ON  M.id_agente = u.id
-        WHERE M.estatus = ? AND C.id_agente = ?`, [data.estatus, data.id_agente], (error, result) => {
-                return error ? reject(error) : resolve(result);
-            })
-        })
-    }
-    if (data.roluser === "ADMIN") {
-        return new Promise((resolve, reject) => {
-            conexion.query(` SELECT M.id, c.id as Id_cliente, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente, concat(u.firt_name,' ',u.second_name) NombreAgente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id
-	INNER JOIN users AS U
-		ON  M.id_agente = u.id
-        WHERE M.estatus = ? `, data.estatus, (error, result) => {
-                return error ? reject(error) : resolve(result);
-            })
-        })
-    }
-    if (data.roluser === "CLIENTE") {
-        return new Promise((resolve, reject) => {
-            conexion.query(` SELECT M.id, c.id as Id_cliente, nom_cliente, monto_entrada, fecha_entrada, valor_bcoin, precio_inicial, precio_final, m.monto_salida, m.fecha_salida, m.utilidad_perdida, m.estatus, m.num_round, m.notas, C.id_agente FROM  movimientos AS M
-	INNER JOIN  clientes AS C
-		ON  M.id_cliente = c.id 
-        WHERE M.estatus = 'A' AND C.id `, data.Id_cliente, (error, result) => {
-                return error ? reject(error) : resolve(result);
-            })
-        })
-    }
-}*/
-
 async function Movimientos(tabla, data) {
     let conexion;
     try {
@@ -697,6 +658,41 @@ async function hitMaximo (tabla, consulta) {
 
 }
 
+
+async function rendimiento (tabla, consulta) {
+    let conexion;
+    try {
+        // Obtener la conexión desde el pool
+        conexion = await conexiondb();
+
+        // Asegurarse de que consulta es un objeto con propiedades como 'user_name' y 'user_password'
+        console.log(" baja --> ", consulta); 
+          
+        const parametros = [consulta.precio_final, consulta.id_cliente];
+        console.log(" parametros ", parametros)
+        // Ejecutar la consulta usando los parámetros en un array
+        const [result] = await conexion.execute(
+            `UPDATE ${tabla} SET precio_final = ?, utilidad_perdida = round((valor_bcoin * precio_final) - (valor_bcoin * precio_inicial),2) 
+             where  id  > 0  AND  id_cliente = ? `,
+            parametros // Pasar los parámetros como un array
+        );
+
+        // Retornar el primer resultado (suponiendo que solo hay uno)
+        return result || null; // Si no hay coincidencias, se devuelve null
+
+    } catch (error) {
+        console.error("Error en el login:", error);
+        throw error; // Lanzamos el error para que lo maneje el bloque llamante
+
+    } finally {
+        // Liberar la conexión si se obtuvo
+        if (conexion) {
+            conexion.release();
+            console.log("Conexión liberada tras baja");
+        }
+    }
+}
+
 module.exports = {
     todos,
     uno,
@@ -709,5 +705,6 @@ module.exports = {
     UsuariosAgente,
     validaUsuario,
     login, 
-    hitMaximo
+    hitMaximo, 
+    rendimiento
 }

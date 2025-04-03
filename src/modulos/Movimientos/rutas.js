@@ -9,7 +9,9 @@ router.post('/todosMovimientos', todosMovimientos);
 router.get('/:id', uno);
 router.post('/hit', hitMaximo); 
 router.post('/', agregar);
-router.put('/', baja);
+router.put('/', baja); 
+router.put('/rendimientos', rendimientos); 
+
 
 
 async function todos(req,res, next){
@@ -74,5 +76,13 @@ async function todosMovimientos(req,res, next){
    }  
 }
 
+async function rendimientos(req,res, next){
+   try {
+      const items = await controlador.rendimientos(req.body)
+         respuestas.success(req, res, ' Actualiza rendimiento del cliente ', 200)
+   } catch (error) {
+         next(error)
+   }
+}
 
 module.exports = router;

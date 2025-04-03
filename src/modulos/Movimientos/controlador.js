@@ -41,6 +41,11 @@ module.exports = function(dbinyectada) {
         return db.hitMaximo(TABLA, body);
     }
     
+        
+    function rendimientos(body){
+        return db.rendimiento(TABLA, body);
+    }
+    
     
     return {
         todos,
@@ -49,6 +54,7 @@ module.exports = function(dbinyectada) {
         agregar,
         Movimientos, 
         query, 
-        hitMaximo  
+        hitMaximo, 
+        rendimientos
     }
 }
